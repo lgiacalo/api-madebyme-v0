@@ -1,3 +1,8 @@
+/**
+ * DESCRIPTION: relation entre les noms(references) dans typeform
+ *                et les noms des champs dans les tables mysql
+ */
+
 // USER => 'in typeform': 'in db'
 export const renameUser = {
     'email_adress': 'email' , 
@@ -36,6 +41,11 @@ const enumKeys = {
     }
 }
 
+
+
+/**
+ * FUNCTIONS: Get object avec les bons noms de variable pour la DB
+ */
 
 // TODO: DEV: prevoir les enum dans user
 export const getObjetUser = (answers) => {

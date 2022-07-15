@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import fs from 'fs';
 import { createClient } from '@typeform/api-client'
 import DbManager from '../connexions/DbManager.js';
-import { getObjetUser, getObjetShop, getObjetProduct } from '../utils/rename.js';
+import { getObjetUser, getObjetShop, getObjetProduct } from '../utils/fieldsDB.js';
 dotenv.config();
 
 const typeformAPI = createClient({ token: process.env.TOKEN_TYPEFORM });
