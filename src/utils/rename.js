@@ -14,7 +14,7 @@ export const renameShop = {
 // PRODUCT => 'in typeform': 'in db'
 export const renameProduct = (num) => ({
     [`name_product_${num}`]: 'name',
-    [`picture_product_${num}`]: 'picture_url',
+    [`picture_product_${num}`]: 'picture_api_url',
     [`price_product_${num}`]: 'price',
     [`description_product${num}`]: 'description',
 })
