@@ -26,6 +26,11 @@ const enumKeys = {
         'Livraison': 'delivery',
         'both': 'both'
     },
+    'payment_type': {
+        'Carte bancaire': 'cb',
+        'Espèces': 'cash',
+        'both': 'both'
+    },
     'currency': {
         'Euro' : 'euro'
     }

@@ -9,7 +9,7 @@
     "scripts": {
         "prod": "pm2 start production.config.json",
         "start": "node src/index.js",
-        "dev": "nodemon src/index.js"
+        "dev": "nodemon --watch src/ src/index.js"
     },
     "dependencies": {
         "@typeform/api-client": "^1.7.0",

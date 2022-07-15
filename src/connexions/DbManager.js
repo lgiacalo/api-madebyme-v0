@@ -57,13 +57,13 @@ export default class DbManager {
         return new Promise((resolve, reject) => {
             this.pool.getConnection((err, connect) => {
                 if (err) {
-                    fs.appendFileSync('sql-errors.log', JSON.stringify(err) + '\n');
+                    fs.appendFileSync('cache/errors/sql-errors.log', JSON.stringify(err) + '\n');
                     console.error('Erreur SQL (voir logs)');
                     return reject(err);
                 }
                 connect.query(`INSERT INTO ${table} SET ?`, data, function(error, results, fields) {
                     if (error) {
-                        fs.appendFileSync('sql-errors.log', JSON.stringify(error) + '\n');
+                        fs.appendFileSync('cache/errors/sql-errors.log', JSON.stringify(error) + '\n');
                         console.error('Erreur SQL (voir logs)');
                         reject(error);
                     }
@@ -202,7 +202,7 @@ export default class DbManager {
         return new Promise((resolve, reject) => {
             this.pool.getConnection((err, connect) => {
                 if (err) {
-                    fs.appendFileSync('sql-errors.log', JSON.stringify(err) + '\n');
+                    fs.appendFileSync('cache/errors/sql-errors.log', JSON.stringify(err) + '\n');
                     console.error('Erreur SQL (voir logs)');
                     return reject(err);
                 }
@@ -238,13 +238,13 @@ export default class DbManager {
         return new Promise((resolve, reject) => {
             this.pool.getConnection((err, connect) => {
                 if (err) {
-                    fs.appendFileSync('sql-errors.log', JSON.stringify(err) + '\n');
+                    fs.appendFileSync('cache/errors/sql-errors.log', JSON.stringify(err) + '\n');
                     console.error('Erreur SQL (voir logs)');
                     return reject(err);
                 }
                 connect.query(query, (Array.isArray(array) && isArray) ? array : [array], (error, results, fields) => {
                     if (error) {
-                        fs.appendFileSync('sql-errors.log', JSON.stringify(error) + '\n');
+                        fs.appendFileSync('cache/errors/sql-errors.log', JSON.stringify(error) + '\n');
                         console.error('Erreur SQL (voir logs)');
                         if (this.clearOnError) {
                             this.clearManagerOnErrorLine();

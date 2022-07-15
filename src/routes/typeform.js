@@ -1,13 +1,13 @@
 import express from 'express';
 import fs from 'fs';
-import { handleSubmitTypeform } from '../func/typeform.js';
+import { handleSubmitTypeform } from '../func/handleTypeform.js';
 
 const router = express.Router();
 
 
 router.get('/', (req, res) => {
   
-  console.log('/get:', {req, res});
+  console.log('/get:', { url: req.url, query: req.query });
   res.json({ success: true });
 });
 
@@ -31,7 +31,7 @@ router.post('/submit', (req, res) => {
   const { query: { typeform }, body } = req;
   
   if (req?.body?.event_id){
-    fs.writeFileSync(`responseExample/${req?.body?.event_id}.json`, JSON.stringify(req.body, null, 4));
+    fs.writeFileSync(`cache/responses/${req?.body?.event_id}.json`, JSON.stringify(req.body, null, 4));
   }
 
   handleSubmitTypeform(typeform, body);

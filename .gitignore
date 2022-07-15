@@ -1,4 +1,11 @@
 node_modules
 .env
+
 responseExample/
+
 sql-errors.log
+
+cache/errors/*
+cache/responses/*
+!cache/errors/.gitkeep
+!cache/responses/.gitkeep
