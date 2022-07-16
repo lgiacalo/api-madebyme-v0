@@ -93,8 +93,10 @@ async function saveProductsShop(answers, id_user, id_shop) {
         const product = { id_shop, id_user, ...getObjetProduct(answers, i) };
 
         // Enregistrement de la photo, recuperation de son url
-        const picture = await typeformAPI.images.add({ url: product.picture_api_url });
-        product.picture_typeform_url = picture.src;
+        if (product.picture_api_url) {
+            const picture = await typeformAPI.images.add({ url: product.picture_api_url });
+            product.picture_typeform_url = picture.src;
+        }
         
         await dbManager.insertAsBunk('product', product, len);
 
