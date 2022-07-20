@@ -18,13 +18,6 @@ router.post('/', (req, res) => {
   res.json({ success: true });
 });
 
-router.get('/submit_test', (req, res) => {
-  
-  console.log('/get:', {req, res});
-  res.json({ success: true });
-
-});
-
 
 router.post('/submit', (req, res) => {
   console.log('post: /submit', req.url);

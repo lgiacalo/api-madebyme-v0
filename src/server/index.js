@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import typeform from '../routes/typeform.js';
-import test from '../routes/test.js';
+// import test from '../routes/test.js';
 
 
 // Instantiate express
@@ -15,6 +15,6 @@ server.use(express.json());
 
 // Initialize routes middleware
 server.use('/api/typeform', typeform);
-server.use('/api/test', test);
+// server.use('/api/test', test);
 
 export default server;

@@ -27,7 +27,7 @@ export const renameProduct = (num) => ({
 const enumKeys = {
     // SHOP
     'order_type': {
-        'A retirer sur place': 'collect',
+        'A retirer en boutique': 'collect',
         'Livraison': 'delivery',
         'both': 'both'
     },
