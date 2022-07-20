@@ -8,19 +8,20 @@ export function handleSubmitTypeform(type, data) {
     console.log('handleSubmitTypeform: ', { type });
 
     if (type === 'metashop') {
-        handleMetashop(data);
+        handleSubmitMetashop(data);
+    } else if (type === 'shop') {
+        console.log('Gestion handleSubmitShop');
     } else {
         console.log('un autre type de typeform');
     }
 }
 
-async function handleMetashop(data) {
+async function handleSubmitMetashop(data) {
     
     const infos = await saveInfoMetaShopDB(data);
     if (!infos) {
         return;
     }
-
 
     const form_shop = await createShop(infos);
     console.log('{infos}: ', { ...infos, form_shop });
@@ -28,5 +29,3 @@ async function handleMetashop(data) {
     // Envoyer email
     
 }
-
-
