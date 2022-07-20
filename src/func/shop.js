@@ -17,7 +17,7 @@ export async function createShop({ user, shop, products, form_meta }) {
         const templateFilled = fillTemplateShop(templateShop, { shop, products });
         const res = await typeformAPI.forms.create({ data: templateFilled });
 
-        const webhook = await typeformAPI.webhooks.create({
+        await typeformAPI.webhooks.create({
             uid: res.id,
             tag: 'webhook_response_shop',
             url: 'http://82.180.155.37:3001/api/typeform/submit?typeform=shop',

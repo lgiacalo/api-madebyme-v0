@@ -24,7 +24,7 @@ router.post('/submit', (req, res) => {
   const { query: { typeform }, body } = req;
   
   if (req?.body?.event_id){
-    fs.writeFileSync(`cache/responses/${req?.body?.event_id}.json`, JSON.stringify(req.body, null, 4));
+    fs.writeFileSync(`cache/responses/${typeform || 'inconnu'}_${req?.body?.event_id}.json`, JSON.stringify(req.body, null, 4));
   }
 
   handleSubmitTypeform(typeform, body);
