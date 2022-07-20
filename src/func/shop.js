@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
+import fs from 'fs';
 import { createClient } from '@typeform/api-client';
 import DbManager from '../connexions/DbManager.js';
 import { saveTypeform } from './metashop.js';
@@ -9,6 +10,46 @@ import templateShop from '../templates/shop_v0.js';
 const typeformAPI = createClient({ token: process.env.TOKEN_TYPEFORM });
 const dbManager = new DbManager(process.env.MYSQL_URL);
 
+
+export async function saveInfoShopDB(data) {
+    try {
+        // Recuperation des infos du shop
+        let sqlRequest = `SELECT * FROM shop where uid_shop = ?`;
+        const shops = await dbManager.query2(sqlRequest, [data.form_response.form_id]);
+    
+        if (shops.length !== 1) {
+            throw new Error(`Error: Recherche shop(${data.form_response.form_id}), ${shops.length} resultat: `)
+        }
+
+        // Recuperation des infos de l'utilisateur
+        sqlRequest = 'SELECT * FROM user where id_user = ?'
+        const users = await dbManager.query(sqlRequest, [shops[0].id_user]);
+        
+        if (users.length !== 1) {
+            throw new Error(`Error: Recherche user (${shops[0].id_user}), ${users.length} resultat: `)
+        }
+
+        // Enregistrement de la response
+        const response_shop = await saveTypeform(data, {
+            id_user: users[0].id_user,
+            id_shop: shops[0].id_shop,
+            name: shops[0].name,
+            type: 'response_shop',
+            uid_form: shops[0].uid_shop,
+            url_form: shops[0].url_shop
+        });
+
+        // TODO: DEV: ajouter l'enregistrement des commandes
+        // TODO: CHECK: verification des variables recuperées apres le submit d'un formulaire de shop
+        return { user: users[0], shop: shops[0], response_shop }
+
+    } catch (err) {
+        console.log("Error shop.js - Erreur lors de l'enregistrement d'un submit shop :", { err, infos: data });
+        fs.appendFileSync('cache/errors/saveInfoShopDB-errors.log', JSON.stringify({ err, infos: data }, null, 4) + '\n');
+        return null;
+    }
+
+}
 
 export async function createShop({ user, shop, products, form_meta }) {
     // TODO: CHECK: ajouter des verifications pour ne pas creer la boutique avec des infos manquantes
@@ -42,7 +83,7 @@ export async function createShop({ user, shop, products, form_meta }) {
 
     } catch (err) {
         console.log("Error shop.js - Erreur lors de la creation d'un nouveau shop :", { err, infos: { user, shop, products, form_meta } });
-        fs.appendFileSync('cache/errors/shop-errors.log', JSON.stringify({ err, infos: { user, shop, products, form_meta } }, null, 4) + '\n');
+        fs.appendFileSync('cache/errors/createShop-errors.log', JSON.stringify({ err, infos: { user, shop, products, form_meta } }, null, 4) + '\n');
         return null;
     }
 

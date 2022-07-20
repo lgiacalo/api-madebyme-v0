@@ -1,8 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { saveInfoMetaShopDB } from './metashop.js'
-import { createShop } from './shop.js';
-
+import { createShop, saveInfoShopDB } from './shop.js';
 
 export function handleSubmitTypeform(type, data) {
     console.log('handleSubmitTypeform: ', { type });
@@ -10,7 +9,7 @@ export function handleSubmitTypeform(type, data) {
     if (type === 'metashop') {
         handleSubmitMetashop(data);
     } else if (type === 'shop') {
-        console.log('Gestion handleSubmitShop');
+        handleSubmitShop(data);
     } else {
         console.log('un autre type de typeform');
     }
@@ -24,8 +23,20 @@ async function handleSubmitMetashop(data) {
     }
 
     const form_shop = await createShop(infos);
-    console.log('{infos}: ', { ...infos, form_shop });
+    console.log('handleSubmitMetashop() infos: ', { ...infos, form_shop });
 
-    // Envoyer email
+    // Envoyer email avec le lien de la nouvelle boutique
+}
+
+async function handleSubmitShop(data) {
+
+    const infos = await saveInfoShopDB(data);
+    if (!infos) {
+        return null;
+    }
+
+    console.log('handleSubmitShop() infos: ', infos);
     
+    // Vendeur: Envoyer un email au vendeur avec les infos de la commande et l'acheteur !
+    // Acheteur: envoyer un email pour lui notifier la prise en compte de la commande et quil sera bientot contacté par le vendeur
 }
