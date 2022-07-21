@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { saveInfoMetaShopDB } from './metashop.js'
-import { sendEmailNewShop } from './sendgrid.js';
 import { createShop, saveInfoShopDB } from './shop.js';
+import SendGrid from '../classes/SendGridClass.js';
 
 export function handleSubmitTypeform(type, data) {
     console.log('handleSubmitTypeform: ', { type });
@@ -28,7 +28,7 @@ async function handleSubmitMetashop(data) {
         return;
     }
     
-    await sendEmailNewShop(infos.user.email, { url_shop: infos.shop.url_shop })
+    await SendGrid.sendToNewShop(infos.user.email, { url_shop: infos.shop.url_shop })
 }
 
 async function handleSubmitShop(data) {
