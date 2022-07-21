@@ -5,7 +5,7 @@ import { createClient } from '@typeform/api-client';
 import DbManager from '../connexions/DbManager.js';
 import { saveTypeform } from './metashop.js';
 
-import templateShop from '../templates/shop_v0.js';
+import templateShop from '../templates/shop_v1.js';
 
 const typeformAPI = createClient({ token: process.env.TOKEN_TYPEFORM });
 const dbManager = new DbManager(process.env.MYSQL_URL);
