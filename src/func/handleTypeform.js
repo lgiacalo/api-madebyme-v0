@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import { saveInfoMetaShopDB } from './metashop.js'
+import { sendEmailNewShop } from './sendgrid.js';
 import { createShop, saveInfoShopDB } from './shop.js';
 
 export function handleSubmitTypeform(type, data) {
@@ -24,8 +25,8 @@ async function handleSubmitMetashop(data) {
 
     const form_shop = await createShop(infos);
     console.log('handleSubmitMetashop() infos: ', { ...infos, form_shop });
-
-    // Envoyer email avec le lien de la nouvelle boutique
+    
+    await sendEmailNewShop(infos.user.email, { url_shop: infos.shop.url_shop })
 }
 
 async function handleSubmitShop(data) {
