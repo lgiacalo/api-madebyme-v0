@@ -185,7 +185,7 @@ export default {
                 "type": "image",
                 "href": "https://images.typeform.com/images/ztxXB72M5URi",
                 "properties": {
-                    "description": "text_picture_product4"
+                    "description": "text_picture_product_3"
                 }
             }
         },
@@ -203,7 +203,7 @@ export default {
                 "type": "image",
                 "href": "https://images.typeform.com/images/ztxXB72M5URi",
                 "properties": {
-                    "description": "text_picture_product3"
+                    "description": "text_picture_product_4"
                 }
             }
         },
@@ -346,11 +346,11 @@ export default {
     ],
     "variables": {
         "delivery_fees": 0,
-        "name_product_1": null,
-        "name_product_2": null,
-        "name_product_3": null,
-        "name_product_4": null,
-        "name_product_5": null,
+        "name_product_1": "",
+        "name_product_2": "",
+        "name_product_3": "",
+        "name_product_4": "",
+        "name_product_5": "",
         "order_price": 0, // inutile ??
         "order_type": "delivery",
         "payment_type": "both",
@@ -1596,6 +1596,6 @@ export default {
         }
     ],
     "_links": {
-        "display": "https://mabyme-shops.typeform.com/shop_v0"
+        "display": "https://mabyme-shops.typeform.com/shopV0"
     }
 }

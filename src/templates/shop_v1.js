@@ -149,12 +149,12 @@ export default {
                 "type": "image",
                 "href": "https://images.typeform.com/images/ztxXB72M5URi",
                 "properties": {
-                    "description": "product-placeholder"
+                    "description": "text_picture_product_1"
                 }
             }
         },
         {
-            "title": "{{var:name_product_2}} à {{var:price_product_2}} ",
+            "title": "{{var:name_product_2}} à {{var:price_product_2}} €",
             "ref": "number_product_2",
             "properties": {
                 "description": "Saisissez la quantité souhaitée"
@@ -167,7 +167,7 @@ export default {
                 "type": "image",
                 "href": "https://images.typeform.com/images/ztxXB72M5URi",
                 "properties": {
-                    "description": "text_picture_product2"
+                    "description": "text_picture_product_2"
                 }
             }
         },
@@ -185,7 +185,7 @@ export default {
                 "type": "image",
                 "href": "https://images.typeform.com/images/ztxXB72M5URi",
                 "properties": {
-                    "description": "text_picture_product4"
+                    "description": "text_picture_product_3"
                 }
             }
         },
@@ -203,7 +203,7 @@ export default {
                 "type": "image",
                 "href": "https://images.typeform.com/images/ztxXB72M5URi",
                 "properties": {
-                    "description": "text_picture_product3"
+                    "description": "text_picture_product_4"
                 }
             }
         },
@@ -346,20 +346,20 @@ export default {
     ],
     "variables": {
         "delivery_fees": 0,
-        "name_product_1": null,
-        "name_product_2": null,
-        "name_product_3": null,
-        "name_product_4": null,
-        "name_product_5": null,
-        "order_price": 0, //inutile ??
+        "name_product_1": "",
+        "name_product_2": "",
+        "name_product_3": "",
+        "name_product_4": "",
+        "name_product_5": "",
+        "order_price": 0, // inutile ??
         "order_type": "delivery",
         "payment_type": "both",
         "price": 0,
-        "price_product_1": 0.5,
-        "price_product_2": 1,
-        "price_product_3": 2,
-        "price_product_4": 3,
-        "price_product_5": 4,
+        "price_product_1": 0,
+        "price_product_2": 0,
+        "price_product_3": 0,
+        "price_product_4": 0,
+        "price_product_5": 0,
         "score": 0,
         "shop_name": "La Boutique de tous les plaisirs",
         "total": 0,
@@ -1879,6 +1879,6 @@ export default {
         }
     ],
     "_links": {
-        "display": "https://mabyme-shops.typeform.com/to/shop_v1"
+        "display": "https://mabyme-shops.typeform.com/to/shopV1"
     }
 }
