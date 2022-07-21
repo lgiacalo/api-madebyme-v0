@@ -14,41 +14,44 @@ const dbManager = new DbManager(process.env.MYSQL_URL);
 export async function saveInfoShopDB(data) {
     try {
         // Recuperation des infos du shop
-        let sqlRequest = `SELECT * FROM shop where uid_shop = ?`;
-        const shops = await dbManager.query2(sqlRequest, [data.form_response.form_id]);
-    
-        if (shops.length !== 1) {
-            throw new Error(`Error: Recherche shop(${data.form_response.form_id}), ${shops.length} resultat: `)
-        }
+        const shop = await getSelectDB('shop', { uid_shop: data.form_response.form_id });
 
         // Recuperation des infos de l'utilisateur
-        sqlRequest = 'SELECT * FROM user where id_user = ?'
-        const users = await dbManager.query(sqlRequest, [shops[0].id_user]);
-        
-        if (users.length !== 1) {
-            throw new Error(`Error: Recherche user (${shops[0].id_user}), ${users.length} resultat: `)
-        }
+        const user = await getSelectDB('user', { id_user: shop.id_user })
+
 
         // Enregistrement de la response
         const response_shop = await saveTypeform(data, {
-            id_user: users[0].id_user,
-            id_shop: shops[0].id_shop,
-            name: shops[0].name,
+            id_user: user.id_user,
+            id_shop: shop.id_shop,
+            name: shop.name,
             type: 'response_shop',
-            uid_form: shops[0].uid_shop,
-            url_form: shops[0].url_shop
+            uid_form: shop.uid_shop,
+            url_form: shop.url_shop
         });
 
+        
         // TODO: DEV: ajouter l'enregistrement des commandes
-        // TODO: CHECK: verification des variables recuperées apres le submit d'un formulaire de shop
-        return { user: users[0], shop: shops[0], response_shop }
-
+        return { user, shop, response_shop };
+        
     } catch (err) {
         console.log("Error shop.js - Erreur lors de l'enregistrement d'un submit shop :", { err, infos: data });
         fs.appendFileSync('cache/errors/saveInfoShopDB-errors.log', JSON.stringify({ err, infos: data }, null, 4) + '\n');
         return null;
     }
 
+}
+
+async function getSelectDB(table, whereData) {
+    const field = Object.keys(whereData)[0];
+    let sqlRequest = `SELECT * FROM ${table} where ${field} = ?`;
+
+    const resultats = await dbManager.query2(sqlRequest, [whereData[field]]);
+    if (resultats.length !== 1) {
+        throw new Error(`Error: Recherche ${table}(${field} = ${whereData[field]}), ${resultats.length} resultat: `)
+    }
+
+    return resultats[0];
 }
 
 export async function createShop({ user, shop, products, form_meta }) {

@@ -136,7 +136,7 @@ export default {
     ],
     "fields": [
         {
-            "title": "{{var:name_product_1}} à {{var:price_product_1}} € ",
+            "title": "{{var:name_product_1}} à {{var:price_product_1}} €",
             "ref": "number_product_1",
             "properties": {
                 "description": "Saisissez la quantité souhaitée"
@@ -149,12 +149,12 @@ export default {
                 "type": "image",
                 "href": "https://images.typeform.com/images/ztxXB72M5URi",
                 "properties": {
-                    "description": "text_picture_product1"
+                    "description": "product-placeholder"
                 }
             }
         },
         {
-            "title": "{{var:name_product_2}} à {{var:price_product_2}} € ",
+            "title": "{{var:name_product_2}} à {{var:price_product_2}} ",
             "ref": "number_product_2",
             "properties": {
                 "description": "Saisissez la quantité souhaitée"
@@ -172,7 +172,7 @@ export default {
             }
         },
         {
-            "title": "{{var:name_product_3}} à {{var:price_product_3}} € ",
+            "title": "{{var:name_product_3}} à {{var:price_product_3}} €",
             "ref": "number_product_3",
             "properties": {
                 "description": "Saisissez la quantité souhaitée"
@@ -190,7 +190,7 @@ export default {
             }
         },
         {
-            "title": "{{var:name_product_4}} à {{var:price_product_4}} € ",
+            "title": "{{var:name_product_4}} à {{var:price_product_4}} €",
             "ref": "number_product_4",
             "properties": {
                 "description": "Saisissez la quantité souhaitée"
@@ -208,7 +208,7 @@ export default {
             }
         },
         {
-            "title": "{{var:name_product_5}} à {{var:price_product_5}} € ",
+            "title": "{{var:name_product_5}} à {{var:price_product_5}} €",
             "ref": "number_product_5",
             "properties": {
                 "description": "Saisissez la quantité souhaitée"
@@ -351,242 +351,26 @@ export default {
         "name_product_3": null,
         "name_product_4": null,
         "name_product_5": null,
-        "order_price": 0, // inutile ??
+        "order_price": 0, //inutile ??
         "order_type": "delivery",
         "payment_type": "both",
         "price": 0,
-        "price_product_1": 0,
-        "price_product_2": 0,
-        "price_product_3": 0,
-        "price_product_4": 0,
-        "price_product_5": 0,
+        "price_product_1": 0.5,
+        "price_product_2": 1,
+        "price_product_3": 2,
+        "price_product_4": 3,
+        "price_product_5": 4,
         "score": 0,
         "shop_name": "La Boutique de tous les plaisirs",
-        "version": "v0"
+        "total": 0,
+        "total_product_1": 0,
+        "total_product_2": 0,
+        "total_product_3": 0,
+        "total_product_4": 0,
+        "total_product_5": 0,
+        "version": "v1"
     },
     "logic": [
-        {
-            "type": "field",
-            "ref": "number_product_1",
-            "actions": [
-                {
-                    "action": "multiply",
-                    "details": {
-                        "target": {
-                            "type": "variable",
-                            "value": "price_product_1"
-                        },
-                        "value": {
-                            "type": "field",
-                            "value": "number_product_1"
-                        }
-                    },
-                    "condition": {
-                        "op": "greater_than",
-                        "vars": [
-                            {
-                                "type": "field",
-                                "value": "number_product_1"
-                            },
-                            {
-                                "type": "constant",
-                                "value": 0
-                            }
-                        ]
-                    }
-                },
-                {
-                    "action": "add",
-                    "details": {
-                        "target": {
-                            "type": "variable",
-                            "value": "price"
-                        },
-                        "value": {
-                            "type": "variable",
-                            "value": "price_product_1"
-                        }
-                    },
-                    "condition": {
-                        "op": "greater_than",
-                        "vars": [
-                            {
-                                "type": "field",
-                                "value": "number_product_1"
-                            },
-                            {
-                                "type": "constant",
-                                "value": 0
-                            }
-                        ]
-                    }
-                },
-                {
-                    "action": "jump",
-                    "details": {
-                        "to": {
-                            "type": "field",
-                            "value": "email_address_customer"
-                        }
-                    },
-                    "condition": {
-                        "op": "or",
-                        "vars": [
-                            {
-                                "op": "equal",
-                                "vars": [
-                                    {
-                                        "type": "variable",
-                                        "value": "name_product_2"
-                                    },
-                                    {
-                                        "type": "constant",
-                                        "value": "null"
-                                    }
-                                ]
-                            },
-                            {
-                                "op": "equal",
-                                "vars": [
-                                    {
-                                        "type": "variable",
-                                        "value": "price_product_2"
-                                    },
-                                    {
-                                        "type": "constant",
-                                        "value": 0
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                },
-                {
-                    "action": "jump",
-                    "details": {
-                        "to": {
-                            "type": "field",
-                            "value": "number_product_2"
-                        }
-                    },
-                    "condition": {
-                        "op": "always",
-                        "vars": []
-                    }
-                }
-            ]
-        },
-        {
-            "type": "field",
-            "ref": "number_product_2",
-            "actions": [
-                {
-                    "action": "multiply",
-                    "details": {
-                        "target": {
-                            "type": "variable",
-                            "value": "price_product_2"
-                        },
-                        "value": {
-                            "type": "field",
-                            "value": "number_product_2"
-                        }
-                    },
-                    "condition": {
-                        "op": "greater_than",
-                        "vars": [
-                            {
-                                "type": "field",
-                                "value": "number_product_2"
-                            },
-                            {
-                                "type": "constant",
-                                "value": 0
-                            }
-                        ]
-                    }
-                },
-                {
-                    "action": "add",
-                    "details": {
-                        "target": {
-                            "type": "variable",
-                            "value": "price"
-                        },
-                        "value": {
-                            "type": "variable",
-                            "value": "price_product_2"
-                        }
-                    },
-                    "condition": {
-                        "op": "greater_than",
-                        "vars": [
-                            {
-                                "type": "field",
-                                "value": "number_product_2"
-                            },
-                            {
-                                "type": "constant",
-                                "value": 0
-                            }
-                        ]
-                    }
-                },
-                {
-                    "action": "jump",
-                    "details": {
-                        "to": {
-                            "type": "field",
-                            "value": "email_address_customer"
-                        }
-                    },
-                    "condition": {
-                        "op": "or",
-                        "vars": [
-                            {
-                                "op": "equal",
-                                "vars": [
-                                    {
-                                        "type": "variable",
-                                        "value": "name_product_3"
-                                    },
-                                    {
-                                        "type": "constant",
-                                        "value": "null"
-                                    }
-                                ]
-                            },
-                            {
-                                "op": "equal",
-                                "vars": [
-                                    {
-                                        "type": "variable",
-                                        "value": "price_product_3"
-                                    },
-                                    {
-                                        "type": "constant",
-                                        "value": 0
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                },
-                {
-                    "action": "jump",
-                    "details": {
-                        "to": {
-                            "type": "field",
-                            "value": "number_product_3"
-                        }
-                    },
-                    "condition": {
-                        "op": "always",
-                        "vars": []
-                    }
-                }
-            ]
-        },
         {
             "type": "field",
             "ref": "payment_type_customer",
@@ -1280,14 +1064,366 @@ export default {
         },
         {
             "type": "field",
-            "ref": "number_product_3",
+            "ref": "number_product_1",
             "actions": [
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total_product_1"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "price_product_1"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_1"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
                 {
                     "action": "multiply",
                     "details": {
                         "target": {
                             "type": "variable",
+                            "value": "total_product_1"
+                        },
+                        "value": {
+                            "type": "field",
+                            "value": "number_product_1"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_1"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "price"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "total_product_1"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_1"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "total_product_1"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_1"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "jump",
+                    "details": {
+                        "to": {
+                            "type": "field",
+                            "value": "email_address_customer"
+                        }
+                    },
+                    "condition": {
+                        "op": "or",
+                        "vars": [
+                            {
+                                "op": "equal",
+                                "vars": [
+                                    {
+                                        "type": "variable",
+                                        "value": "name_product_2"
+                                    },
+                                    {
+                                        "type": "constant",
+                                        "value": "null"
+                                    }
+                                ]
+                            },
+                            {
+                                "op": "equal",
+                                "vars": [
+                                    {
+                                        "type": "variable",
+                                        "value": "price_product_2"
+                                    },
+                                    {
+                                        "type": "constant",
+                                        "value": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "jump",
+                    "details": {
+                        "to": {
+                            "type": "field",
+                            "value": "number_product_2"
+                        }
+                    },
+                    "condition": {
+                        "op": "always",
+                        "vars": []
+                    }
+                }
+            ]
+        },
+        {
+            "type": "field",
+            "ref": "number_product_2",
+            "actions": [
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total_product_2"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "price_product_2"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_2"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "multiply",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total_product_2"
+                        },
+                        "value": {
+                            "type": "field",
+                            "value": "number_product_2"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_2"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "price"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "total_product_2"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_2"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "total_product_2"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_2"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "jump",
+                    "details": {
+                        "to": {
+                            "type": "field",
+                            "value": "email_address_customer"
+                        }
+                    },
+                    "condition": {
+                        "op": "or",
+                        "vars": [
+                            {
+                                "op": "equal",
+                                "vars": [
+                                    {
+                                        "type": "variable",
+                                        "value": "name_product_3"
+                                    },
+                                    {
+                                        "type": "constant",
+                                        "value": "null"
+                                    }
+                                ]
+                            },
+                            {
+                                "op": "equal",
+                                "vars": [
+                                    {
+                                        "type": "variable",
+                                        "value": "price_product_3"
+                                    },
+                                    {
+                                        "type": "constant",
+                                        "value": 0
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "jump",
+                    "details": {
+                        "to": {
+                            "type": "field",
+                            "value": "number_product_3"
+                        }
+                    },
+                    "condition": {
+                        "op": "always",
+                        "vars": []
+                    }
+                }
+            ]
+        },
+        {
+            "type": "field",
+            "ref": "number_product_3",
+            "actions": [
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total_product_3"
+                        },
+                        "value": {
+                            "type": "variable",
                             "value": "price_product_3"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_3"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "multiply",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total_product_3"
                         },
                         "value": {
                             "type": "field",
@@ -1317,7 +1453,33 @@ export default {
                         },
                         "value": {
                             "type": "variable",
-                            "value": "price_product_3"
+                            "value": "total_product_3"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_3"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "total_product_3"
                         }
                     },
                     "condition": {
@@ -1394,11 +1556,37 @@ export default {
             "ref": "number_product_4",
             "actions": [
                 {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total_product_4"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "price_product_4"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_4"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
                     "action": "multiply",
                     "details": {
                         "target": {
                             "type": "variable",
-                            "value": "price_product_4"
+                            "value": "total_product_4"
                         },
                         "value": {
                             "type": "field",
@@ -1428,7 +1616,33 @@ export default {
                         },
                         "value": {
                             "type": "variable",
-                            "value": "price_product_4"
+                            "value": "total_product_4"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_4"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "total_product_4"
                         }
                     },
                     "condition": {
@@ -1502,37 +1716,40 @@ export default {
         },
         {
             "type": "field",
-            "ref": "name_customer",
+            "ref": "number_product_5",
             "actions": [
                 {
                     "action": "add",
                     "details": {
                         "target": {
                             "type": "variable",
-                            "value": "price"
+                            "value": "total_product_5"
                         },
                         "value": {
                             "type": "variable",
-                            "value": "delivery_fees"
+                            "value": "price_product_5"
                         }
                     },
                     "condition": {
-                        "op": "always",
-                        "vars": []
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_5"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
                     }
-                }
-            ]
-        },
-        {
-            "type": "field",
-            "ref": "number_product_5",
-            "actions": [
+                },
                 {
                     "action": "multiply",
                     "details": {
                         "target": {
                             "type": "variable",
-                            "value": "price_product_5"
+                            "value": "total_product_5"
                         },
                         "value": {
                             "type": "field",
@@ -1562,7 +1779,33 @@ export default {
                         },
                         "value": {
                             "type": "variable",
-                            "value": "price_product_5"
+                            "value": "total_product_5"
+                        }
+                    },
+                    "condition": {
+                        "op": "greater_than",
+                        "vars": [
+                            {
+                                "type": "field",
+                                "value": "number_product_5"
+                            },
+                            {
+                                "type": "constant",
+                                "value": 0
+                            }
+                        ]
+                    }
+                },
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "total_product_5"
                         }
                     },
                     "condition": {
@@ -1593,9 +1836,49 @@ export default {
                     }
                 }
             ]
+        },
+        {
+            "type": "field",
+            "ref": "name_customer",
+            "actions": [
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "price"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "delivery_fees"
+                        }
+                    },
+                    "condition": {
+                        "op": "always",
+                        "vars": []
+                    }
+                },
+                {
+                    "action": "add",
+                    "details": {
+                        "target": {
+                            "type": "variable",
+                            "value": "total"
+                        },
+                        "value": {
+                            "type": "variable",
+                            "value": "delivery_fees"
+                        }
+                    },
+                    "condition": {
+                        "op": "always",
+                        "vars": []
+                    }
+                }
+            ]
         }
     ],
     "_links": {
-        "display": "https://mabyme-shops.typeform.com/shop_v0"
+        "display": "https://mabyme-shops.typeform.com/to/shop_v1"
     }
 }
