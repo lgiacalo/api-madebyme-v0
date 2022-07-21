@@ -18,17 +18,17 @@ export async function sendEmailNewShop(email, infos) {
         dynamicTemplateData: infos,
       };
 
-    await sendEmail(msg)
+    await sendEmail(msg, 'creation');
     
 }
 
 // export async function sendEmailNewOrder(email, infos);
 // export async function sendEmailConfirmOrder(email, infos);
 
-async function sendEmail(msg) {
+async function sendEmail(msg, log) {
     try {
         await SendGrid.send(msg);
-        console.log(`Email envoyé à `, msg.to);
+        console.log(`Email de ${log || 'type inconnu'} envoyé à `, msg.to);
         
     } catch (err) {
         console.log("Error sendgrid.js - Erreur lors de l'envoi d'un email :", { err, msg });

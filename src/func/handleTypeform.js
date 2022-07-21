@@ -24,7 +24,9 @@ async function handleSubmitMetashop(data) {
     }
 
     const form_shop = await createShop(infos);
-    console.log('handleSubmitMetashop() infos: ', { ...infos, form_shop });
+    if (!form_shop) {
+        return;
+    }
     
     await sendEmailNewShop(infos.user.email, { url_shop: infos.shop.url_shop })
 }
@@ -36,8 +38,6 @@ async function handleSubmitShop(data) {
         return null;
     }
 
-    console.log('handleSubmitShop() infos: ', infos);
-    
     // Vendeur: Envoyer un email au vendeur avec les infos de la commande et l'acheteur !
     // Acheteur: envoyer un email pour lui notifier la prise en compte de la commande et quil sera bientot contacté par le vendeur
 }

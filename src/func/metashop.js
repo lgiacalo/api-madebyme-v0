@@ -29,6 +29,7 @@ export async function saveInfoMetaShopDB(data, alreadySave = false) {
             })
         }
 
+        console.log(`Enregistrement d'une nouvelle boutique par ${user.email}`);
         return { user, shop, products, form_meta };
     } catch (err) {
         console.log("Error metashop.js - Erreur lors de la gestion d'un nouveau metashop :", { err, data });

@@ -30,7 +30,7 @@ export async function saveInfoShopDB(data) {
             url_form: shop.url_shop
         });
 
-        
+        console.log(`Nouvelle commande de ${data.form_response.answers.find(ans => ans.field.ref === 'email_address_customer').email} pour la boutique ${shop.name} (${shop.url_shop})`);
         // TODO: DEV: ajouter l'enregistrement des commandes
         return { user, shop, response_shop };
         
@@ -82,6 +82,8 @@ export async function createShop({ user, shop, products, form_meta }) {
 
         shop.uid_shop = res.id;
         shop.url_shop = res._links.display;
+
+        console.log(`Nouvelle boutique en ligne de ${user.email}: ${shop.url_shop}`)
         return form_shop;
 
     } catch (err) {
