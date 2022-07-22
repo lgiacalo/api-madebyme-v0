@@ -34,7 +34,7 @@ class SendGridClass {
             console.log(`Email de ${log || 'type inconnu'} envoyé à`, msg.to);
             
         } catch (err) {
-            console.log("Error sendgrid.js - Erreur lors de l'envoi d'un email :", { err, msg });
+            console.error("Error sendgrid.js - Erreur lors de l'envoi d'un email :", { err, msg });
             fs.appendFileSync('cache/errors/sendgrid-errors.log', JSON.stringify({ err, msg }, null , 4) + '\n');
             return null;
         }

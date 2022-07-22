@@ -43,7 +43,7 @@ class MySqlClass {
             console.log(`Enregistrement d'une nouvelle boutique par ${user.email}`);
             return { user, shop, products, form_meta };
         } catch (err) {
-            console.log("Error saveMetaShop() - Erreur lors de la gestion d'un nouveau metashop :", { err, data });
+            console.error("Error saveMetaShop() - Erreur lors de la gestion d'un nouveau metashop :", { err, data });
             fs.appendFileSync('cache/errors/saveMetaShop-errors.log', JSON.stringify({ err, data }, null, 4) + '\n');
             return null;
         }
@@ -72,13 +72,17 @@ class MySqlClass {
             return { user, shop, response_shop };
 
         } catch (err) {
-            console.log("Error saveNewOrderFromShop() - Erreur lors de l'enregistrement d'un submit shop :", { err, infos: raw });
+            console.error("Error saveNewOrderFromShop() - Erreur lors de l'enregistrement d'un submit shop :", { err, infos: raw });
             fs.appendFileSync('cache/errors/saveNewOrderFromShop-errors.log', JSON.stringify({ err, infos: raw }, null, 4) + '\n');
             return null;
         }
     }
 
 
+    // UPDATE
+    async updateShopUrl(id_shop, uid_shop, url_shop) {
+        await dbManager.query2(`UPDATE shop SET uid_shop = ?, url_shop = ? WHERE id_shop = ?`, [uid_shop, url_shop, id_shop]);
+    }
 
     // INSERT Tables
     async saveTypeform(raw, infos) {

@@ -4,10 +4,8 @@ import { createClient } from '@typeform/api-client';
 import fs from 'fs';
 
 import templateShop from '../templates/shop_v1.js';
-import DbManager from '../classes/DbManager.js';
 import MySql from './MySqlClass.js';
 
-const dbManager = new DbManager(process.env.MYSQL_URL);
 const typeformAPI = createClient({ token: process.env.TOKEN_TYPEFORM });
 
 class Typeform {
@@ -36,17 +34,15 @@ class Typeform {
                 url_form: res._links.display
             });
 
-            const sqlRequest = `UPDATE shop SET uid_shop = ?, url_shop = ? WHERE id_shop = ${shop.id_shop}`;
-            await dbManager.query2(sqlRequest, [res.id, res._links.display]);
-
             shop.uid_shop = res.id;
             shop.url_shop = res._links.display;
+            await MySql.updateShopUrl(shop.id_shop, shop.uid_shop, shop.url_shop);
 
             console.log(`Nouvelle boutique en ligne de ${user.email}: ${shop.url_shop}`);
             return form_shop;
 
         } catch (err) {
-            console.log("Error createShop() - Erreur lors de la creation d'un nouveau shop :", { err, infos: { user, shop, products, form_meta } });
+            console.error("Error createShop() - Erreur lors de la creation d'un nouveau shop :", { err, infos: { user, shop, products, form_meta } });
             fs.appendFileSync('cache/errors/createShop-errors.log', JSON.stringify({ err, infos: { user, shop, products, form_meta } }, null, 4) + '\n');
             return null;
         }
