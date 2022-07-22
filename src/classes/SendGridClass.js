@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import SendGrid from '@sendgrid/mail'
 import fs from 'fs';
 

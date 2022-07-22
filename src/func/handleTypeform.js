@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 dotenv.config();
-import { saveInfoMetaShopDB } from './metashop.js'
-import { createShop, saveInfoShopDB } from './shop.js';
 import SendGrid from '../classes/SendGridClass.js';
+import MySql from '../classes/MySqlClass.js';
+import Typeform from '../classes/TypeformClass.js';
 
 export function handleSubmitTypeform(type, data) {
     console.log('handleSubmitTypeform: ', { type });
@@ -18,12 +18,12 @@ export function handleSubmitTypeform(type, data) {
 
 async function handleSubmitMetashop(data) {
     
-    const infos = await saveInfoMetaShopDB(data);
+    const infos = await MySql.saveMetaShop(data);
     if (!infos) {
         return;
     }
 
-    const form_shop = await createShop(infos);
+    const form_shop = await Typeform.createShop(infos);
     if (!form_shop) {
         return;
     }
@@ -33,7 +33,7 @@ async function handleSubmitMetashop(data) {
 
 async function handleSubmitShop(data) {
 
-    const infos = await saveInfoShopDB(data);
+    const infos = await MySql.saveNewOrderFromShop(data);
     if (!infos) {
         return null;
     }
